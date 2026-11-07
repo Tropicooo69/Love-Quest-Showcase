@@ -1,0 +1,313 @@
+   :root {
+       color-scheme: dark;
+       --rose: #ffb6d5;
+       --blanc: #fff0f5;
+   }
+
+   * {
+       box-sizing: border-box;
+   }
+
+   body {
+       margin: 0;
+       padding: 24px;
+       font-family: system-ui, "Segoe UI", sans-serif;
+       color: #f7edf5;
+       background: linear-gradient(145deg, #171425, #2c1c39);
+   }
+
+   main {
+       max-width: 890px;
+       margin: 0 auto;
+   }
+
+   header {
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       gap: 14px;
+       flex-wrap: wrap;
+       margin-bottom: 18px;
+   }
+
+   h1 {
+       margin: 0;
+       font-size: 27px;
+   }
+
+   h1 span {
+       color: var(--rose);
+   }
+
+   header p {
+       margin: 4px 0 0;
+       color: #c9b9d0;
+       font-size: 13px;
+   }
+
+   .topbar {
+       background: #231b35;
+       border: 1px solid #76566f;
+       border-radius: 12px;
+       padding: 11px 14px;
+       display: flex;
+       align-items: center;
+       flex-wrap: wrap;
+       gap: 12px;
+       margin-bottom: 18px;
+   }
+
+   .topbar label {
+       font-weight: 600;
+       font-size: 13px;
+   }
+
+   .topbar select {
+       width: min(100%, 310px);
+   }
+
+   select,
+   button,
+   input {
+       font: inherit;
+   }
+
+   select,
+   button {
+       border: 1px solid #a382a2;
+       border-radius: 9px;
+       padding: 9px 12px;
+       background: #493454;
+       color: white;
+   }
+
+   button {
+       cursor: pointer;
+   }
+
+   button:hover {
+       background: #65456d;
+   }
+
+   button.primary {
+       background: #ffc0da;
+       color: #331f38;
+       font-weight: 800;
+   }
+
+   button.primary:hover {
+       background: #ffe1ee;
+   }
+
+   .screen {
+       width: 100%;
+       aspect-ratio: 5 / 3;
+       overflow: hidden;
+       border-radius: 15px;
+       border: 7px solid #0b0910;
+       position: relative;
+       background: #312644;
+   }
+
+   .illustration {
+       position: absolute;
+       width: 100%;
+       height: 100%;
+       inset: 0;
+       object-fit: cover;
+   }
+
+   .shade {
+       position: absolute;
+       inset: 35% 0 0;
+       background: linear-gradient(transparent 0%, #170e2894 65%, #110b23d9 100%);
+       pointer-events: none;
+   }
+
+   .logo {
+       position: absolute;
+       top: 4%;
+       left: 4%;
+       font-weight: 900;
+       font-size: clamp(12px, 2.5vw, 24px);
+       text-shadow: 0 2px 7px #000a;
+   }
+
+   .logo span {
+       color: #ffd3e6;
+   }
+
+   .tag {
+       position: absolute;
+       top: 5%;
+       right: 4%;
+       font-size: clamp(8px, 1vw, 12px);
+       background: #1c1428ae;
+       padding: 5px 8px;
+       border-radius: 20px;
+   }
+
+   .dialogue {
+       position: absolute;
+       bottom: 3%;
+       left: 3%;
+       right: 3%;
+       padding: 2.4% 3%;
+       background: #1d1439df;
+       border: 1px solid #ffebf17e;
+       border-radius: 12px;
+       backdrop-filter: blur(3px);
+   }
+
+   .dialogue h2 {
+       font-size: clamp(13px, 2.2vw, 22px);
+       margin: 0 0 5px;
+   }
+
+   .dialogue p {
+       font-size: clamp(11px, 1.5vw, 16px);
+       min-height: 1.5em;
+       line-height: 1.4;
+       margin: 0 0 8px;
+   }
+
+   .dialogue .bottom {
+       display: flex;
+       align-items: center;
+       justify-content: space-between;
+       gap: 8px;
+   }
+   .dialogue-personnage {
+       position: absolute;
+       inset: 0;
+       z-index: 10;
+
+       background: rgba(10, 12, 30, 0.75);
+
+       display: flex;
+       align-items: flex-end;
+       padding: 20px;
+   }
+
+   .dialogue-personnage[hidden] {
+       display: none;
+   }
+
+   .contenu-dialogue {
+       width: 100%;
+       padding: 15px;
+       background: #252040;
+       border: 1px solid #a6a3df;
+       border-radius: 12px;
+   }
+   .character-portrait {
+       position: absolute;
+       left: 3%;
+       bottom: 18%;
+       height: 65%;
+       max-width: 42%;
+       object-fit: contain;
+       pointer-events: none;
+       z-index: 1;
+   }
+
+   .character-portrait[hidden] {
+       display: none;
+   }
+
+   .count {
+       color: #dbc4de;
+       font-size: clamp(10px, 1.15vw, 13px);
+   }
+
+   .dialogue button {
+       padding: 7px 14px;
+       font-size: clamp(10px, 1.3vw, 14px);
+   }
+
+   .under {
+       display: flex;
+       flex-wrap: wrap;
+       align-items: center;
+       gap: 14px;
+       padding: 14px 1px;
+       color: #d9c5da;
+       font-size: 13px;
+   }
+
+   .led {
+       display: inline-block;
+       border-radius: 50%;
+       width: 15px;
+       height: 15px;
+       background: orange;
+       box-shadow: 0 0 14px 3px orange;
+   }
+
+   .notice {
+       background: #251c38;
+       border: 1px solid #6f526c;
+       padding: 13px;
+       border-radius: 10px;
+       font-size: 13px;
+   }
+   .point-secret {
+       position: absolute;
+       top: 20%;
+       left: 65%;
+       z-index: 3;
+
+       width: 36px;
+       height: 36px;
+       border : none; 
+
+       font-size: 22px;
+       background: transparent;
+       color: transparent;
+       cursor: pointer;
+       outline: 2px dashed red;
+   }
+   .point-secret :hover{
+    background: transparent;
+   }
+   .point-hotspot {
+       position: absolute;
+       z-index: 4;
+
+       background: transparent;
+       border: none;
+       padding: 0;
+
+       cursor: pointer;
+       outline: 2px dashed red;
+   }
+   .point-hotspot:hover{
+    background: transparent;
+   }
+   .menu-button {
+       position: absolute;
+       top: 12px;
+       left: 45%;
+       z-index: 5;
+   }
+
+   .menu-panel {
+       position: absolute;
+       inset: 0;
+       z-index: 10;
+       background: #231b35;
+       padding: 20px;
+       overflow-y: auto;
+   }
+
+   .menu-panel[hidden] {
+       display: none;
+   }
+
+   .notice strong {
+       color: #ffd1e5;
+   }
+
+   code {
+       color: #ffd1e5;
+   }

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love Quest — Séance 4 : dialogues</title>
+
+  <link rel="stylesheet" href="style.css">
+ 
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1>LOVE <span>QUEST</span> ♡</h1>
+      <p>Atelier de programmation — séance 4 · format 800 × 480</p>
+    </div>
+    <span>Version PC hors connexion</span>
+  </header>
+
+  <div class="topbar">
+    <label for="jsonFile">Importer ton scénario JSON :</label>
+    <input id="jsonFile" type="file" accept=".json,application/json">
+    <label for="scenePicker">Scène :</label>
+    <select id="scenePicker"></select>
+  </div>
+
+  <div class="screen">
+    <img id="imageScene" class="illustration" src="assets/scene_2.png" alt="Décor du chapitre">
+    <button id="btnMenu" class="menu-button">☰ Menu</button>
+    <div id="menuPanel" class="menu-panel" hidden>
+      <h2>LOVE QUEST — MENU</h2>
+    
+      <button id="btnFermerMenu">✕ Fermer</button>
+    
+      <h3>🎒 Inventaire</h3>
+      <p id="inventoryDisplay"></p>
+    
+      <!-- Plus tard : collection, paramètres, sauvegarde -->
+    </div>
+    <div class="shade"></div>
+    <div class="logo">LOVE <span>QUEST</span> ♡</div>
+    <div id="tagScene" class="tag"></div>
+    <div id="zoneSecrets"></div>
+    <div id="zoneHotspots"></div>
+    <div id="dialoguePersonnage" class="dialogue-personnage" hidden>
+      <img id="portraitPersonnage" class="character-portrait" alt="Portrait du personnage" hidden>
+    
+      <div class="contenu-dialogue">
+        <h3 id="nomPersonnage"></h3>
+        <p id="textePersonnage"></p>
+    
+        <button id="btnFermerDialoguePersonnage">
+          Fermer
+        </button>
+      </div>
+    
+    </div>
+    <div class="dialogue">
+      <h2 id="titreScene"></h2>
+      <p id="texteDialogue"></p>
+    <div class="bottom">
+      <button id="btnRetour" class="primary">← Retour</button>
+      <span class="count" id="compteurDialogue"></span>
+      <button id="btnContinuer" class="primary">Continuer →</button>
+    </div>
+      <button id="btnPasser" hidden>Passer la scène →</button>
+    </div>
+   
+  </div>
+  <div class="under"><span class="led" id="led"></span><span id="ledNom">Ambiance</span><span>· Le ruban LED physique sera ajouté plus tard.</span></div>
+  <div class="notice" id="statut"><strong>Exercice :</strong> pour l'instant, le bouton Continuer ne fait pas avancer les dialogues. C'est à toi de programmer cette fonction !</div>
+  
+</main>
+<script src="script.js"></script>
+</body>
+</html>

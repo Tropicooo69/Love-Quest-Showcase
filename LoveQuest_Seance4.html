@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love Quest — Séance 4 : dialogues</title>
+  <style>
+    :root { color-scheme: dark; --rose:#ffb6d5; --blanc:#fff0f5; }
+    * { box-sizing: border-box; }
+    body { margin:0; padding:24px; font-family:system-ui,"Segoe UI",sans-serif; color:#f7edf5; background:linear-gradient(145deg,#171425,#2c1c39); }
+    main { max-width:890px; margin:0 auto; }
+    header { display:flex; justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:18px; }
+    h1 { margin:0; font-size:27px; }
+    h1 span { color:var(--rose); }
+    header p { margin:4px 0 0; color:#c9b9d0; font-size:13px; }
+    .topbar { background:#231b35; border:1px solid #76566f; border-radius:12px; padding:11px 14px; display:flex; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:18px; }
+    .topbar label { font-weight:600; font-size:13px; }
+    .topbar select { width:min(100%,310px); }
+    select,button,input { font:inherit; }
+    select,button { border:1px solid #a382a2; border-radius:9px; padding:9px 12px; background:#493454; color:white; }
+    button { cursor:pointer; }
+    button:hover { background:#65456d; }
+    button.primary { background:#ffc0da; color:#331f38; font-weight:800; }
+    button.primary:hover { background:#ffe1ee; }
+    .screen { width:100%; aspect-ratio:5 / 3; overflow:hidden; border-radius:15px; border:7px solid #0b0910; position:relative; background:#312644; }
+    .illustration { position:absolute; width:100%; height:100%; inset:0; object-fit:cover; }
+    .shade { position:absolute; inset:35% 0 0; background:linear-gradient(transparent 0%,#170e2894 65%,#110b23d9 100%); pointer-events:none; }
+    .logo { position:absolute; top:4%; left:4%; font-weight:900; font-size:clamp(12px,2.5vw,24px); text-shadow:0 2px 7px #000a; }
+    .logo span { color:#ffd3e6; }
+    .tag { position:absolute; top:5%; right:4%; font-size:clamp(8px,1vw,12px); background:#1c1428ae; padding:5px 8px; border-radius:20px; }
+    .dialogue { position:absolute; bottom:3%; left:3%; right:3%; padding:2.4% 3%; background:#1d1439df; border:1px solid #ffebf17e; border-radius:12px; backdrop-filter:blur(3px); }
+    .dialogue h2 { font-size:clamp(13px,2.2vw,22px); margin:0 0 5px; }
+    .dialogue p { font-size:clamp(11px,1.5vw,16px); min-height:1.5em; line-height:1.4; margin:0 0 8px; }
+    .dialogue .bottom { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+    .count { color:#dbc4de; font-size:clamp(10px,1.15vw,13px); }
+    .dialogue button { padding:7px 14px; font-size:clamp(10px,1.3vw,14px); }
+    .under { display:flex; flex-wrap:wrap; align-items:center; gap:14px; padding:14px 1px; color:#d9c5da; font-size:13px; }
+    .led { display:inline-block; border-radius:50%; width:15px; height:15px; background:orange; box-shadow:0 0 14px 3px orange; }
+    .notice { background:#251c38; border:1px solid #6f526c; padding:13px; border-radius:10px; font-size:13px; }
+    .notice strong { color:#ffd1e5; }
+    code { color:#ffd1e5; }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1>LOVE <span>QUEST</span> ♡</h1>
+      <p>Atelier de programmation — séance 4 · format 800 × 480</p>
+    </div>
+    <span>Version PC hors connexion</span>
+  </header>
+
+  <div class="topbar">
+    <label for="jsonFile">Importer ton scénario JSON :</label>
+    <input id="jsonFile" type="file" accept=".json,application/json">
+    <label for="scenePicker">Scène :</label>
+    <select id="scenePicker"></select>
+  </div>
+
+  <div class="screen">
+    <img id="imageScene" class="illustration" src="assets/scene_2.png" alt="Décor du chapitre">
+    <div class="shade"></div>
+    <div class="logo">LOVE <span>QUEST</span> ♡</div>
+    <div id="tagScene" class="tag"></div>
+    <div class="dialogue">
+      <h2 id="titreScene"></h2>
+      <p id="texteDialogue"></p>
+      <div class="bottom">
+        <span class="count" id="compteurDialogue"></span>
+        <button id="btnContinuer" class="primary">Continuer →</button>
+      </div>
+    </div>
+  </div>
+  <div class="under"><span class="led" id="led"></span><span id="ledNom">Ambiance</span><span>· Le ruban LED physique sera ajouté plus tard.</span></div>
+  <div class="notice" id="statut"><strong>Exercice :</strong> pour l'instant, le bouton Continuer ne fait pas avancer les dialogues. C'est à toi de programmer cette fonction !</div>
+</main>
+<script>
+'use strict';
+
+// ==== 1. DONNÉES DU JEU ====
+// Ces scènes de démonstration permettent de travailler même sans importer de JSON.
+// Le bouton "Importer" permet ensuite de choisir TON fichier corrigé.
+let scenes = [
+  {
+    id: 'bowling_billard',
+    tag: 'CHAPITRE 1 · BOWLING & BILLARD',
+    title: 'Bowling & Billard',
+    text: '',
+    image: 'assets/scene_2.png',
+    led: 'feu_de_bois',
+    dialogues: [
+      'Dialogue 1 : le début de notre rendez-vous...',
+      'Dialogue 2 : un souvenir qui fait sourire...',
+      'Dialogue 3 : et si ce n’était que le début ?'
+    ],
+    easter_eggs: []
+  },
+  {
+    id: 'grande_roue',
+    tag: 'CHAPITRE 1 · LA FOIRE',
+    title: 'La grande roue',
+    text: '',
+    image: 'assets/scene_3.png',
+    led: 'rose',
+    dialogues: ['Premier dialogue à imaginer...', 'Deuxième dialogue à imaginer...'],
+    easter_eggs: []
+  }
+];
+
+let sceneActuelle = 0;
+let dialogueActuel = 0;
+
+const couleurs = {
+  rose: '#ff8cbd',
+  bleu: '#78bafb',
+  or: '#ffd27c',
+  violet: '#b79afe',
+  feu_de_bois: '#fb903e',
+  eteint: '#656071'
+};
+
+// Petit raccourci pour sélectionner un élément HTML par son identifiant.
+function element(id) {
+  return document.getElementById(id);
+}
+
+// ==== 2. AFFICHER LES DONNÉES ====
+function dialoguesDe(scene) {
+  // Certaines anciennes scènes utilisent seulement "text".
+  // On les rend compatibles avec le nouveau système.
+  if (Array.isArray(scene.dialogues) && scene.dialogues.length > 0) {
+    return scene.dialogues;
+  }
+  return [scene.text || 'Ce dialogue reste à écrire.'];
+}
+
+function afficher() {
+  const scene = scenes[sceneActuelle];
+  const dialogues = dialoguesDe(scene);
+
+  element('titreScene').textContent = scene.title || 'Sans titre';
+  element('tagScene').textContent = scene.tag || 'LOVE QUEST';
+  element('texteDialogue').textContent = dialogues[dialogueActuel];
+  element('compteurDialogue').textContent =
+    `Dialogue ${dialogueActuel + 1} / ${dialogues.length}`;
+
+  // Si l'image n'existe pas encore, on montre un décor provisoire.
+  const imagesDisponibles = [
+    'assets/scene_1.png', 'assets/scene_2.png', 'assets/scene_3.png'
+  ];
+  element('imageScene').src = imagesDisponibles.includes(scene.image)
+    ? scene.image : 'assets/scene_2.png';
+
+  const couleur = couleurs[scene.led] || couleurs.feu_de_bois;
+  element('led').style.background = couleur;
+  element('led').style.boxShadow = `0 0 14px 3px ${couleur}`;
+  element('ledNom').textContent = `Ambiance : ${scene.led || 'feu_de_bois'}`;
+  element('scenePicker').value = String(sceneActuelle);
+}
+
+// ==== 3. L'EXERCICE À FAIRE ====
+function continuer() {
+  // TODO 1 : récupérer la scène courante avec scenes[sceneActuelle]
+  const scene = scenes[sceneActuelle];
+  // TODO 2 : récupérer le tableau avec dialoguesDe(scene)
+  const dialogues = dialoguesDe(scene)
+  // TODO 3 : si un dialogue suivant existe, augmenter dialogueActuel de 1
+  if(dialogueActuel + 1 < dialogues.length){
+    dialogueActuel++;
+  }
+
+  afficher();
+}
+
+// ==== 4. CONTRÔLES ====
+element('btnContinuer').addEventListener('click', continuer);
+
+element('scenePicker').addEventListener('change', function () {
+  sceneActuelle = Number(element('scenePicker').value);
+  dialogueActuel = 0;
+  afficher();
+});
+
+function remplirListe() {
+  const select = element('scenePicker');
+  select.innerHTML = '';
+  scenes.forEach(function (scene, i) {
+    const option = document.createElement('option');
+    option.value = i;
+    option.textContent = `${i + 1} · ${scene.title || scene.id}`;
+    select.appendChild(option);
+  });
+}
+
+// Import local : aucune connexion Internet requise.
+// Les champs supplémentaires (dont easter_eggs) sont conservés.
+element('jsonFile').addEventListener('change', async function (event) {
+  const fichier = event.target.files[0];
+  if (!fichier) return;
+  try {
+    const contenu = await fichier.text();
+    const json = JSON.parse(contenu);
+    const tableau = Array.isArray(json) ? json : json.scenes;
+    if (!Array.isArray(tableau) || !tableau.length) {
+      throw new Error('Aucun tableau "scenes" trouvé.');
+    }
+    if (tableau.some(s => !s || typeof s !== 'object')) {
+      throw new Error('Une scène n’est pas un objet JSON valide.');
+    }
+    scenes = tableau;
+    sceneActuelle = 0;
+    dialogueActuel = 0;
+    remplirListe();
+    afficher();
+    element('statut').textContent = `Import réussi : ${scenes.length} scènes. Choisis Bowling & Billard dans la liste.`;
+  } catch (erreur) {
+    element('statut').textContent = 'Import impossible : ' + erreur.message;
+  }
+});
+
+remplirListe();
+afficher();
+</script>
+</body>
+</html>

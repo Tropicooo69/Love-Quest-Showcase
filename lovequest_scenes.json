@@ -1,0 +1,96 @@
+{
+  "project": "Love Quest",
+  "version": 1,
+  "scenes": [
+    {
+      "id": "rencontre",
+      "tag": "CHAPITRE 1 · LE DÉBUT",
+      "title": "Le début de notre histoire",
+      "text": "Il y a des jours qui ressemblent aux autres. Et puis il y a celui où tout a commencé. ♡",
+      "image": "assets/scene_1.png",
+      "led": "rose"
+    },
+    {
+      "id": "souvenirs",
+      "tag": "CHAPITRE 1 · NOS SOUVENIRS",
+      "title": "Un monde rien qu’à nous",
+      "text": "Certains souvenirs brillent plus fort que les étoiles. Et ce n’est que le début !",
+      "image": "assets/scene_2.png",
+      "led": "bleu"
+    },
+    {
+      "id": "surprise",
+      "tag": "CHAPITRE 1 · À SUIVRE",
+      "title": "La suite s’écrit ensemble",
+      "text": "Prête pour les prochaines aventures ? La surprise arrive dans le prochain chapitre. ♥",
+      "image": "assets/scene_3.png",
+      "led": "or"
+    },
+    {
+      "id": "Bowling_Billard",
+      "tag": "CHAPITRE 1 · BOWLING & BILLARD",
+      "title": "Bowling & Billard",
+      "text" : "",
+      "dialogues": [
+        "dialogue_1",
+        "dialogue_2",
+        "dialogue_3"
+        
+      ],
+      "image": "assets/scene_2.png",
+      "led": "orange & rouge",
+      "hotspots": [
+        {
+          "id": "personnage_test",
+          "type": "personnage",
+          "title": "Personnage test",
+          "x": 45,
+          "y": 30,
+          "width" : 12,
+          "height" : 25,
+          "text": "Salut ! Ceci est notre premier personnage interactif."
+        },
+        {
+          "id": "objet_test",
+          "type": "objet",
+          "title": "Objet test",
+          "x": 60,
+          "y": 50,
+          "text": "Ceci est notre premier objet interactif."
+        },
+        {
+          "id": "personnage_test",
+          "type": "personnage",
+          "title": "Mira",
+          "text": "Bienvenue !",
+          "portrait": "assets/Character/mira.png"
+        }
+
+      ],
+      "easter_eggs" : [
+        {
+          "id": "easter_egg_1",
+          "title": "Easter Egg 1",
+          "x" : 20,
+          "y" : 35,
+          "text": "Un petit secret caché dans la scène !",
+          "image": "assets/easter_egg_1.png",
+          "led_on_open" : "cadeau",
+          "led_after" : "adaptée"
+        },
+        {
+          "id": "easter_egg_2",
+          "title": "Easter Egg 2",
+          "x" : 70,
+          "y" : 55,
+          "text": "Un autre secret à découvrir !",
+          "image": "assets/easter_egg_2.png",
+          "led_on_open" : "cadeau",
+          "led_after" : "adaptée"
+        }
+      
+      ]
+    }
+  ]
+       
+}

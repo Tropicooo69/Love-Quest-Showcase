@@ -1,0 +1,21 @@
+LOVE QUEST — SEANCE 4 / DIALOGUES PROGRESSIFS
+============================================
+
+1. Ouvre le fichier LoveQuest_Seance4.html avec Chrome ou Edge.
+   L'interface fonctionne sans Internet, et sans matériel ESP32.
+2. Dans VS Code : File > Open Folder... > LoveQuest_Seance4_Atelier.
+3. Dans LoveQuest_Seance4.html, cherche "TODO 1" (Ctrl+F).
+4. Programme la fonction continuer() en t'aidant de l'exercice C++ precedent.
+   Objectif n°1 : les trois dialogues de Bowling apparaissent un par un.
+   Ne touche pas encore aux changements de scènes ni aux easter eggs.
+5. Ctrl+S dans VS Code, puis Ctrl+R dans Chrome ou Edge.
+6. Pour tester tes propres scenes : clique sur Importer, choisis ton
+   fichier lovequest_scenes.json et selectionne Bowling & Billard.
+
+IMPORTANT :
+- Ce laboratoire est un exercice, et pas encore le programme pour l'ESP32.
+- Les nouveaux champs du JSON (dialogues, easter_eggs, LED...) sont
+  conserves lors de l'import. Aucune modification du fichier n'est faite.
+- Les images de Bowling et autres seront remplacees plus tard.
+- Si tu changes ton JSON dans VS Code, reimporte-le dans la page.
+- Sauvegarde regulierement ton travail.

@@ -1,0 +1,11 @@
+# Fichiers temporaires
+*.log
+*.tmp
+Thumbs.db
+.DS_Store
+
+# Dépendances éventuelles
+node_modules/
+
+# Configuration personnelle de VS Code
+.vscode/
